@@ -7,7 +7,7 @@
 /// input handler and send functionality in code, but not implemented or used.
 /// @see http://jeelabs.org/2010/12/11/rf12-acknowledgements/
 // 2013-03-03<info@sevenwatt.com> http://opensource.org/licenses/mit-license.php
-
+// 2013-03-29 Rinie added IT+ and TI+WS1600 decoding
 //#include <JeeLib.h>
 #include "RF12WS.h"
 #include <Time.h>

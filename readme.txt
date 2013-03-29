@@ -27,3 +27,7 @@ in the first view lines of the weatherstationFASK.ino:
     #define LOGDAT 1 //comment = disable, uncomment = enable logging of parsed sensor data
 
 
+Rinie added IT+ decoding that uses the same speed as FineOffet
+Added WS1600 decoding that uses half the speed.
+See http://fredboboss.free.fr/tx29/index.php?lang=en
+#define ITPLUS1600 for WS1600 decoding
