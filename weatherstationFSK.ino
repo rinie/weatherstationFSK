@@ -545,7 +545,7 @@ void decodeSensorDataItPlus(uint8_t* sbuf) {
     int8_t tempDeci;
     //humidity
     uint8_t humidity = (sbuf[3]) & 0x7F;
-    uint8_t lowBat = (sbuf[3]) & 0x80 >> 7;
+    uint8_t lowBat = (sbuf[3] & 0x80) >> 7;
 
 	temp = BCD2bin(sbuf[1] & 0x0F) * 10 + BCD2bin((sbuf[2] & 0xF0)>>4);
 	temp = temp - 40;
