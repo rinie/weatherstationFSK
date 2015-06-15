@@ -570,7 +570,7 @@ void decodeSensorDataItPlus(uint8_t* sbuf) {
 	}
 
 	Serial.print(" RawData:");
-	for (byte i = 0; i < MSG_ITPLUS; i++) {
+	for (byte i = 0; i < LEN_ITPLUS; i++) {
 		PrintByteHex(sbuf[i], ' ');
 	}
     Serial.println();
