@@ -191,7 +191,7 @@ void loop() {
           case 0xA:
 #ifdef ITPLUS1600
 		{
-				byte datasets = rf12_buf[2] & 0x0F; // 2bytes, 4 nibbles
+				byte datasets = rf12_buf[2] & 0x07; // 2bytes, 4 nibbles
 				if (datasets <= 5) { // odd, blank lower 0 of last byte
 					pktlen = datasets * 2 + 2 + 1;
 					crc_ok = rf12_buf[pktlen] == _crc8(&rf12_buf[1], pktlen-1);
@@ -588,7 +588,8 @@ Data - organized in nibbles - are structured as follows (exammple with blanks ad
  from next 1.5 nibbles (here 5a) the 6 msb are identifier of transmitter,
  bit 1 indicates acquisition/synchronizing phase (so 5a >> 58 thereafter)
  bit 0 will be 1 in case of error (e.g. no wind sensor 5a >> 5b)
- next nibble (here 5) is count of quartets to betransmitted
+ the msb of the next nibble will be 1 in case of a low battery (LowBattery flag)
+ the remaining three bits are the count of quartets (here 5) that will be transmitted.
  up to 5 quartets of data follow
  each quartet starts with type indicator (here 0,1,2,3,4)
  0: temperature, 3 nibbles bcd coded tenth of °c plus 400 (here 628-400 = 22.8°C)
@@ -622,7 +623,7 @@ void decodeSensorDataWs1600(uint8_t* sbuf) {
     uint8_t windbearing = 0;
     // station id
     uint8_t stationid = ((sbuf[0] & 0x0F) << 2) | ((sbuf[1] & 0xC0) >>6);
-    uint8_t dataSets = sbuf[1] & 0xF;
+    uint8_t dataSets = sbuf[1] & 0x7;
     int8_t temp;
     int8_t tempDeci;
     //humidity
