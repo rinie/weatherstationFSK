@@ -621,7 +621,7 @@ void decodeSensorDataWs1600(uint8_t* sbuf) {
     char *compass[] = {"N  ", "NNE", "NE ", "ENE", "E  ", "ESE", "SE ", "SSE", "S  ", "SSW", "SW ", "WSW", "W  ", "WNW", "NW ", "NNW"};
     uint8_t windbearing = 0;
     // station id
-    uint8_t stationid = ((sbuf[0] & 0x0F) << 6) | ((sbuf[1] & 0xC0) >>6);
+    uint8_t stationid = ((sbuf[0] & 0x0F) << 2) | ((sbuf[1] & 0xC0) >>6);
     uint8_t dataSets = sbuf[1] & 0xF;
     int8_t temp;
     int8_t tempDeci;
